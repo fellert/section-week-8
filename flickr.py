@@ -36,8 +36,8 @@ def search_flickr(params):
         "per_page": 10,
         "nojsoncallback": 1
     }
-    for key in params:
-        params_diction[key] = params[key]
+    for key,value in params.items():
+        params_diction[key] = value
 
     unique_ident = params_unique_combination(baseurl,params_diction)
     if unique_ident in CACHE_DICTION:
@@ -69,6 +69,7 @@ results = search_flickr('sunset summer')
 
 photos_list = []
 for r in results['photos']['photo']:
+
     photos_list.append(Photo(r))
 
 print()
